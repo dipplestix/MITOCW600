@@ -53,10 +53,7 @@ def ghost(wordlist):
     word = ''
     turn = 0
     while word not in wordlist or len(word) < 4:
-        if turn % 2 == 0:
-            player = 1
-        else:
-            player = 2
+        player = turn%2 + 1
         letter = input("Player %d say a letter:\n" % player)
         while letter not in string.ascii_letters:
             letter = input("Player %d say a letter:\n" % player)
@@ -64,7 +61,7 @@ def ghost(wordlist):
         print(word)
         if not exists(wordlist, word):
             print("Player %d loses because no possible word exists" % player)
-            return None
+            break
         turn += 1
     print("Player %d loses because %s is a word" % (player, word))
     return None
